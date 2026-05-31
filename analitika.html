@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Аналітика - УГІ</title>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="page-analytics">
+    <header>
+        <div class="container">
+            <a href="index.html" class="logo-link">
+                <img src="logo_UGI.png" alt="Логотип сайту">
+            </a> 
+            <h1 class="futuristic-title" data-text="Аналітичні дані">Аналітичні дані</h1>
+            <p class="sub-header-scan" data-text="Статистика та моніторинг">Статистика та моніторинг</p>
+        </div>
+    </header>
+
+    <nav>
+        <div class="container">
+            <ul class="nav-links">
+                <li><a href="index.html">Головна</a></li>
+                <li><a href="sluzhbovi_rozsliduvannya.html">Службові розслідування</a></li>
+                <li><a href="pidtrimka.html">Підтримка</a></li>
+                <li><a href="dokumenti.html">Документи</a></li>
+                <li><a href="index.html#contact">Контакти</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <main class="container dashboard-grid">
+        <section class="card">
+            <h2>Статистика порушень</h2>
+            <p>Аналіз дисциплінарних проступків у розрізі територіальних підрозділів.</p>
+            <button class="btn">Графіки</button>
+        </section>
+
+        <section class="card">
+            <h2>Динаміка показників</h2>
+            <p>Порівняльний аналіз службової діяльності за поточний та минулий роки.</p>
+            <button class="btn">Порівняти</button>
+        </section>
+
+        <section class="card">
+            <h2>Звіти по регіонах</h2>
+            <p>Формування детальних звітів по кожному окремому підрозділу області.</p>
+            <button class="btn">Завантажити PDF</button>
+        </section>
+
+        <!-- Карта проступків -->
+        <section class="card full-width">
+            <h2>Карта дисциплінарних проступків</h2>
+            <p>Візуалізація зон інтенсивності порушень по Дніпропетровській області</p>
+            <div id="map" class="analytics-map"></div>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2026 Моя Сторінка. Всі права захищені.</p>
+    </footer>
+
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <script src="https://leaflet.github.io/Leaflet.heat/dist/leaflet-heat.js"></script>
+    <script>
+        // Ініціалізація карти
+        const map = L.map('map').setView([48.4647, 35.0462], 8);
+
+        // Використовуємо світлу тему (Positron) для кращого контрасту та "денного" вигляду
+        L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png', {
+            attribution: '&copy; OpenStreetMap contributors &copy; CARTO'
+        }).addTo(map);
+
+        // Дані порушень
+        const violationPoints = [
+            [47.9105, 33.3918, 0.9], 
+            [47.9200, 33.4000, 0.8],
+            [47.8900, 33.3500, 0.7],
+            [48.5129, 34.6111, 0.6],
+            [48.5200, 34.6000, 0.5],
+            [48.5164, 35.8703, 0.6],
+            [48.4647, 35.0462, 0.8],
+            [48.4500, 35.0600, 0.5],
+            [48.4700, 35.0300, 0.7],
+            [47.5674, 34.3980, 0.4],
+            [48.6416, 35.2238, 0.3]
+        ];
+
+        // Тепловий шар
+        const heat = L.heatLayer(violationPoints, {
+            radius: 35,
+            blur: 15,
+            maxZoom: 10,
+            gradient: {
+                0.4: '#00ffaa', // Колір нашої теми
+                0.6: '#ffff00',
+                0.8: '#ffaa00',
+                1.0: '#ff4d4d'  // Критична зона
+            }
+        }).addTo(map);
+
+        // Маркери підрозділів
+        const divisions = [
+            { name: "Криворізьке РУП", coords: [47.9105, 33.3918] },
+            { name: "Кам'янське РУП", coords: [48.5129, 34.6111] },
+            { name: "Дніпровське РУП", coords: [48.4647, 35.0462] },
+            { name: "Павлоградське РУП", coords: [48.5164, 35.8703] }
+        ];
+
+        divisions.forEach(div => {
+            L.circleMarker(div.coords, {
+                radius: 8,
+                color: '#00ffaa',
+                fillColor: '#0a0a1a',
+                fillOpacity: 1,
+                weight: 2
+            }).addTo(map).bindPopup(`
+                <div style="color: #0a0a1a; font-family: sans-serif;">
+                    <b style="font-size: 14px;">${div.name}</b><br>
+                    <span style="font-size: 12px;">Аналітика службових розслідувань доступна в реєстрі.</span>
+                </div>
+            `);
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Моя сторінка</title>
+    <link rel="stylesheet" href="style.css"> 
+</head>
+<body>
+    <!-- Заголовок сайту -->
+    <header>
+        <div class="container">
+            <a href="C:\Users\Admin\Desktop\Simple1\logo_UGI.png" class="logo-link">
+                <img src="logo_UGI.png" alt="Логотип сайту">
+            </a> 
+            <h1 class="futuristic-title" data-text="Управління Головної інспекції">Управління Головної інспекції</h1>
+            <p class="sub-header-scan" data-text="ГУНП в Дніпропетровській області">ГУНП в Дніпропетровській області</p>
+        </div>
+    </header>
+
+    <!-- Навігація -->
+    <nav>
+        <div class="container">
+            <ul class="nav-links">
+                <li><a href="sluzhbovi_rozsliduvannya.html">Службові розслідування</a></li>
+                <li><a href="analitika.html">Аналітика</a></li>
+                <li><a href="pidtrimka.html">Підтримка</a></li>
+                <li><a href="dokumenti.html">Документи</a></li>
+                <li><a href="#contact">Контакти</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Основний контент -->
+    <main class="container dashboard-grid">
+        <!-- Секція 1 -->
+        <section id="home" class="card">
+            <h2>Панель керування</h2>
+            <p>Централізована система контролю діяльності підрозділів ГУНП в області.</p>
+            <button class="btn">Оновити дані</button>
+        </section>
+
+        <!-- Секція 2 -->
+        <section id="about" class="card">
+            <h2>Стан дисципліни</h2>
+            <p>Поточні результати перевірок та аналітичні показники службової діяльності.</p>
+            <button class="btn">Звітність</button>
+        </section>
+
+        <!-- Секція 3 -->
+        <section id="services" class="card">
+            <h2>Гаряча лінія</h2>
+            <p>Прийом звернень щодо можливих неправомірних дій працівників поліції.</p>
+            <button class="btn">Залишити запит</button>
+        </section>
+
+        <!-- Секція 4 -->
+        <section id="blancs" class="card full-width">
+            <h2>Електронна бібліотека</h2>
+            <p>Актуальні нормативні акти та зразки документів:</p>
+            
+            <div class="blanks-container">
+                <a href="./blank_zayava.docx" class="btn-file" download>Заява (.docx)</a>
+                <a href="./zvit_tablicya.xlsx" class="btn-file" download>Звіт (.xlsx)</a>
+                <a href="./instrukcia.pdf" class="btn-file" target="_blank">Інструкція (.pdf)</a>
+                <a href="./shema_proizdu.jpeg" class="btn-file" target="_blank">Схема (.jpeg)</a>
+            </div>
+        </section>
+
+        <!-- Секція 5 -->
+        <section id="contact" class="card">
+            <h2>Контакти</h2>
+            <p>📧 Email: example@email.com</p>
+            <p>📱 Телефон: +38 (000) 000-00-00</p>
+            <p>📍 Адреса: Україна, м. Дніпро, проспект Пилипа Орлика, 3-а</p>
+            <div class="external-links">
+                <a href="https://npu.gov.ua/" target="_blank" class="btn-file">Сайт НП України</a>
+                <a href="https://dp.npu.gov.ua/" target="_blank" class="btn-file">Сайт ГУНП в Дніпропетровській області</a>
+                <a href="https://www.ugi-dnipro.pp.ua/" target="_blank" class="btn-file">Портал УГІ ГУНП в Дніпропетровській області</a>
+            </div>
+        </section>
+
+        <!-- Секція 6 -->
+        <section id="alternation" class="card">
+            <h2>Чергування</h2>
+            <p>Інформація про графік чергування працівників.</p>
+            <button class="btn">Переглянути графік</button>
+            <div class="duty-info">
+                <p class="duty-date">Дата: <span id="current-date"></span></p>
+                <p><strong>Черговий:</strong> <span id="duty-officer">Завантаження...</span></p>
+                <p class="contact-info">📞 <span id="duty-contact"></span></p>
+                <p><strong>Відповідальний:</strong> <span id="responsible-officer">Завантаження...</span></p>
+                <p class="contact-info">📞 <span id="responsible-contact"></span></p>
+                <p><strong>Чергова частина ГУНП в Дніпропетровській області:</strong></p>
+                <p class="contact-info">📞 <a href="tel:+380676128092" class="phone-link">+38 067 612 80 92</a> <a href="https://wa.me/380676128092" target="_blank" class="wa-link">💬 WhatsApp</a></p>
+            </div>
+        </section>
+
+        <!-- Секція 7 -->
+        <section id="air-raid" class="card">
+            <h2>Повітряна тривога</h2>
+            <p>Актуальна інформація про статус повітряних тривог по всій Україні</p>
+            <div class="map-embed">
+                <iframe src="https://alerts.in.ua/" title="Інтерактивна карта повітряних тривог України" loading="lazy"></iframe>
+            </div>
+        </section>
+    </main>
+
+    <!-- Футер -->
+    <footer>
+        <p>&copy; 2026 Моя Сторінка. Всі права захищені.</p>
+    </footer>
+
+    <script>
+    // 1. БАЗА ДАНИХ ГРАФІКУ (Вносьте зміни сюди!)
+    const dutySchedule = [
+        {
+            date: "2026-05-29", // Дата в форматі РРРР-ММ-ДД
+            dutyOfficer: "Калюжний Олександр Володимирович",
+            dutyContact: "+380 67 147 07 76",
+            responsible: "Михайленко Владислав Олегович",
+            responsibleContact: "+380 67 133 01 01"
+        },
+        {
+            date: "2026-05-30",
+            dutyOfficer: "Литвиненко Євгеній Леонідович",
+            dutyContact: "+380 67 972 55 32",
+            responsible: "Михайленко Владислав Олегович",
+            responsibleContact: "+380 67 133 01 01"
+        },
+        {
+            date: "2026-05-31",
+            dutyOfficer: "Коваленко Олена Миколаївна",
+            dutyContact: "+380 50 987 65 43",
+            responsible: "Михайленко Владислав Олегович",
+            responsibleContact: "+380 67 133 01 01"
+        }
+        // Шаблон для копіювання на наступні дні:
+        // { date: "РРРР-ММ-ДД", dutyOfficer: "...", dutyContact: "...", responsible: "...", responsibleContact: "..." },
+    ];
+
+    // 2. АВТОМАТИЧНЕ ОНОВЛЕННЯ ДАНИХ НА СТОРІНЦІ
+    document.addEventListener("DOMContentLoaded", function () {
+        // Отримуємо сьогоднішню дату на комп'ютері користувача
+        const today = new Date();
+        
+        // Форматуємо її в РРРР-ММ-ДД (враховуючи часовий пояс)
+        const year = today.getFullYear();
+        const month = String(today.getMonth() + 1).padStart(2, '0');
+        const day = String(today.getDate()).padStart(2, '0');
+        const formattedToday = `${year}-${month}-${day}`;
+
+        // Відображаємо гарну дату на сторінці (ДД.ММ.РРРР)
+        document.getElementById("current-date").innerText = `${day}.${month}.${year}`;
+
+        // Шукаємо в нашому графіку рядок із сьогоднішньою датою
+        const todayDuty = dutySchedule.find(item => item.date === formattedToday);
+
+        if (todayDuty) {
+            const cleanPhone = (num) => num.replace(/[^\d+]/g, '');
+            const waClean = (num) => num.replace(/[^\d]/g, '');
+            
+            const createLinks = (num) => {
+                if (!num || num === "—") return num;
+                const c = cleanPhone(num);
+                const w = waClean(num);
+                return `<a href="tel:${c}" class="phone-link">${num}</a> <a href="https://wa.me/${w}" target="_blank" class="wa-link">💬 WhatsApp</a>`;
+            };
+
+            // Якщо знайшли — підставляємо дані в HTML
+            document.getElementById("duty-officer").innerText = todayDuty.dutyOfficer;
+            document.getElementById("duty-contact").innerHTML = createLinks(todayDuty.dutyContact);
+            document.getElementById("responsible-officer").innerText = todayDuty.responsible;
+            document.getElementById("responsible-contact").innerHTML = createLinks(todayDuty.responsibleContact);
+        } else {
+            // Якщо на сьогодні графіка немає
+            document.getElementById("duty-officer").innerText = "На сьогодні графік відсутній";
+            document.getElementById("duty-contact").innerText = "—";
+            document.getElementById("responsible-officer").innerText = "—";
+            document.getElementById("responsible-contact").innerText = "—";
+        }
+    });
+    </script>
+
+</body>
+</html>
